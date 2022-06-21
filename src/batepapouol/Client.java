@@ -40,15 +40,15 @@ public class Client extends JFrame implements ActionListener, KeyListener {
     private BufferedWriter bfw;
     private JTextField txtIP;
     private JTextField txtPorta;
-    private JTextField nickname;
+    private JTextField clientNickname;
 
     public Client() throws IOException{
         
         JLabel lblMessage = new JLabel("Verificar!");
         txtIP = new JTextField("127.0.0.1");
         txtPorta = new JTextField("2022");
-        nickname = new JTextField("Nickname");
-        Object[] texts = {lblMessage, txtIP, txtPorta, nickname };
+        clientNickname = new JTextField("Nickname");
+        Object[] texts = {lblMessage, txtIP, txtPorta, clientNickname };
         JOptionPane.showMessageDialog(null, texts);
         pnlContent = new JPanel();
         texto = new JTextArea(10,20);
@@ -76,7 +76,7 @@ public class Client extends JFrame implements ActionListener, KeyListener {
         pnlContent.setBackground(Color.LIGHT_GRAY);
         texto.setBorder(BorderFactory.createEtchedBorder(Color.BLUE,Color.BLUE));
         txtMsg.setBorder(BorderFactory.createEtchedBorder(Color.BLUE, Color.BLUE));
-        setTitle(nickname.getText());
+        setTitle(clientNickname.getText());
         setContentPane(pnlContent);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -91,7 +91,7 @@ public class Client extends JFrame implements ActionListener, KeyListener {
         ou = socket.getOutputStream();
         ouw = new OutputStreamWriter(ou);
         bfw = new BufferedWriter(ouw);
-        bfw.write(nickname.getText()+"\r\n");
+        bfw.write(clientNickname.getText()+"\r\n");
         bfw.flush();
     }
     
@@ -101,8 +101,8 @@ public class Client extends JFrame implements ActionListener, KeyListener {
         bfw.write("Desconectado \r\n");
         texto.append("Desconectado \r\n");
     }   else{
-        bfw.write(msg+"\r\n");
-        texto.append( nickname.getText() + " diz: " +         txtMsg.getText()+"\r\n");
+        bfw.write(clientNickname.getText() + " diz: " + msg+"\r\n");
+        texto.append(clientNickname.getText() + " diz: " + txtMsg.getText()+"\r\n");
     }
         bfw.flush();
         txtMsg.setText("");

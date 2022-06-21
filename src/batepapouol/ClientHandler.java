@@ -29,7 +29,7 @@ public class ClientHandler implements Runnable {
             this.bufferedWriter= new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.clientNickname = bufferedReader.readLine();
             clientHandlers.add(this);
-            broadcastMessage(" entrou na sala!");
+            broadcastMessage(clientNickname + " entrou na sala!");
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
